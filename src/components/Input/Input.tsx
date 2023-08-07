@@ -12,6 +12,7 @@ export const Input = ({ type, value, onChange } : Props) => {
         type={type}
         value={value}
         onChange={onChange}
+        className="border-b-2 border-gray-300"
       />
     </>
   );
