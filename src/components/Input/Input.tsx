@@ -9,7 +9,7 @@ type Props = {
   className?: string,
 }
 
-export const Input = ({ type, value, onChange, placeholder, className  } : Props) => {
+export const Input = ({ type, value, onChange, placeholder, className } : Props) => {
   return (
     <>
       <input
