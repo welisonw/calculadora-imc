@@ -2,7 +2,9 @@
 
 import { Input } from "@/components/Input/Input";
 import { ChangeEvent, useState } from "react";
-import powered from '../assets/powered.png'
+import powered from '../assets/powered.png';
+import { levels, calculateImc } from "@/helpers/calculateImc";
+
 
 export default function Home() {
   const [ height, setHeight ] = useState<number>(0);
@@ -12,7 +14,7 @@ export default function Home() {
   console.log(typeof height)
   console.log(typeof weight)
 
-
+  // Funcionalidade input Height
   const handleChangeHeight = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.maxLength = 4;
 
@@ -22,6 +24,8 @@ export default function Home() {
     setHeight(formattedValue);
   };
   
+  // Funcionalidade input Weight
+
   const handleChangeWeight = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.maxLength = 6;
 
@@ -45,7 +49,7 @@ export default function Home() {
 
   const handleClickCalculate = () => {
     if (height && weight) {
-      let imc = weight / (height * height)
+      calculateImc
       
       console.log(imc)
 
