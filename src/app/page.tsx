@@ -7,6 +7,7 @@ import powered from '../assets/powered.png'
 export default function Home() {
   const [ height, setHeight ] = useState<number>(0);
   const [ weight, setWeight ] = useState<number>(0);
+  const [ imc, setImc ] = useState<number>(0);
 
   const handleClickCalculate = () => {
     if (height && weight) {
