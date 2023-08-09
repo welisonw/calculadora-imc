@@ -14,9 +14,6 @@ export default function Home() {
   const [ weight, setWeight ] = useState<number>(0);
   const [ showYourLevel, setShowYourLevel ] = useState<Level | null>(null);
 
-  console.log(typeof height)
-  console.log(typeof weight)
-
   // Funcionalidade input Height
   const handleChangeHeight = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.maxLength = 4;
@@ -51,9 +48,7 @@ export default function Home() {
 
   const handleClickCalculate = () => {
     if (height && weight) {
-      calculateImc
-
-
+      setShowYourLevel(calculateImc(height, weight));
     } else {
       alert('Todos os campos devem ser preenchidos!');
     };
@@ -71,7 +66,7 @@ export default function Home() {
 
       <main className="flex gap-10 m-auto">
         {/* Leftside */}
-        <div className="flex-1">
+        <section className="flex-1">
           <h1 className="text-3xl font-bold text-gray-700 mb-3">Calcule o seu IMC</h1>
           <p className="text-gray-500 mb-3">IMC é a sigla para Índice de Massa Corpórea, parâmetro adotado pela Organização Mundial de Saúde (OMS) para calcular o peso ideal de cada pessoa.</p>
           <Input
@@ -96,22 +91,51 @@ export default function Home() {
           >
             Calcular
           </button>
-        </div>
+        </section>
 
         {/* Rightside */}
-        <div className="flex-1 grid grid-cols-2 gap-5">
+        <section className="flex-1 flex">
+          {/* Card inicial */}
           {
-            levels.map((level, index) => (
-              <div key={index} className='flex flex-col justify-center items-center rounded-xl text-white' style={{ backgroundColor: level.color }}>
-                <div className="flex justify-center items-center w-[4rem] h-[4rem] bg-black/10 rounded-full">
-                  <img src={level.icon === 'up' ? upImage.src : downImage.src} alt="" width='30' />
-                </div>
-                <h3 className="font-bold py-1">{level.title}</h3>
-                <small className="text-xs">IMC está entre <strong>{level.imc[0]} e {level.imc[1]}</strong></small>
-              </div>
-            ))
+            !showYourLevel &&
+            <div className="flex-1 grid grid-cols-2 gap-5">
+              {
+                levels.map((level, index) => (
+                  <div
+                    key={index}
+                    className='flex flex-col justify-center items-center rounded-xl text-white'
+                    style={{ backgroundColor: level.color }}
+                  >
+                    <div className="flex justify-center items-center w-[4rem] h-[4rem] bg-black/10 rounded-full">
+                      <img
+                        src={level.icon === 'up' ? upImage.src : downImage.src}
+                        alt="hand"
+                        width='30'
+                      />
+                    </div>
+                    <h2 className="font-bold py-2 text-lg">{level.title}</h2>
+                    <small className="text-sm">IMC entre <strong>{level.imc[0]} e {level.imc[1]}</strong></small>
+                  </div>
+                ))
+              }
+            </div>
           }
-        </div>
+
+          {/* Card quando calculado o IMC do usuário */}
+          {
+            showYourLevel &&  
+            <div className="flex-1 flex">
+              <div className="flex flex-col justify-center items-center rounded-xl text-white w-full" style={{ backgroundColor: showYourLevel.color }}>
+                <div className="flex justify-center items-center w-[4rem] h-[4rem] bg-black/10 rounded-full">
+                  <img src={showYourLevel.icon === 'up' ? upImage.src : downImage.src} alt="" width='30' />
+                </div>
+                <h1 className="font-bold text-3xl my-3">{showYourLevel.title}</h1>
+                <p className="text-sm mb-4">IMC entre <strong>{showYourLevel.imc[0]} e {showYourLevel.imc[1]}</strong></p>
+                <p>Seu IMC é de <strong>{showYourLevel.yourImc} kg/m²</strong></p>
+              </div>
+            </div>
+          }
+        </section>
       </main>
     </div>  
   );
