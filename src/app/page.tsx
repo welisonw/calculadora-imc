@@ -7,6 +7,7 @@ import { levels, calculateImc } from "@/helpers/calculateImc";
 import upImage from '../assets/up.png';
 import downImage from '../assets/down.png';
 import { Level } from "@/types/Level";
+import leftArrow from '../assets/leftarrow.png';
 
 
 export default function Home() {
@@ -45,7 +46,7 @@ export default function Home() {
     setWeight(numericValue);
   };
 
-
+  // Funcionalidade para calcular o IMC
   const handleClickCalculate = () => {
     if (height && weight) {
       setShowYourLevel(calculateImc(height, weight));
@@ -54,6 +55,12 @@ export default function Home() {
     };
   };
 
+  // Funcionalidade de resetar da left arrow
+  const handleArrowReset = () => {
+    setShowYourLevel(null);
+    setHeight(0);
+    setWeight(0);
+  };
 
 
   return (
@@ -64,7 +71,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="flex gap-10 m-auto">
+      <main className="flex gap-20 m-auto">
         {/* Leftside */}
         <section className="flex-1">
           <h1 className="text-3xl font-bold text-gray-700 mb-3">Calcule o seu IMC</h1>
@@ -125,9 +132,23 @@ export default function Home() {
           {
             showYourLevel &&  
             <div className="flex-1 flex">
+              <div
+                className="absolute ml-[-2rem] mt-[10rem] flex justify-center items-center w-[4rem] h-[4rem] bg-blue-500 rounded-full cursor-pointer duration-200 hover:opacity-90 hover:scale-105"
+                onClick={handleArrowReset}
+              >
+                <img
+                src={leftArrow.src}
+                alt="left arrow"
+                width='25'
+                />
+              </div>
               <div className="flex flex-col justify-center items-center rounded-xl text-white w-full" style={{ backgroundColor: showYourLevel.color }}>
                 <div className="flex justify-center items-center w-[4rem] h-[4rem] bg-black/10 rounded-full">
-                  <img src={showYourLevel.icon === 'up' ? upImage.src : downImage.src} alt="" width='30' />
+                  <img
+                    src={showYourLevel.icon === 'up' ? upImage.src : downImage.src}
+                    alt=""
+                    width='30'
+                  />
                 </div>
                 <h1 className="font-bold text-3xl my-3">{showYourLevel.title}</h1>
                 <p className="text-sm mb-4">IMC entre <strong>{showYourLevel.imc[0]} e {showYourLevel.imc[1]}</strong></p>
