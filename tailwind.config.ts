@@ -13,6 +13,20 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      keyframes: {
+        animaRight: {
+          'from': {transform: 'translateX(30px)', opacity: '0'},
+          'to': {transform: 'translateX(0px)', opacity: '1'},
+        },
+        animaLeft: {
+          'from': {transform: 'translateX(-30px)', opacity: '0'},
+          'to': {transform: 'translateX(0px)', opacity: '1'},
+        },
+      },
+      animation: {
+        animaRight: 'animaRight .5s forwards',
+        animaLeft: 'animaLeft .5s forwards',
+      },
     },
   },
   plugins: [],
