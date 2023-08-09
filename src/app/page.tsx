@@ -4,12 +4,15 @@ import { Input } from "@/components/Input/Input";
 import { ChangeEvent, useState } from "react";
 import powered from '../assets/powered.png';
 import { levels, calculateImc } from "@/helpers/calculateImc";
+import upImage from '../assets/up.png';
+import downImage from '../assets/down.png';
+import { Level } from "@/types/Level";
 
 
 export default function Home() {
   const [ height, setHeight ] = useState<number>(0);
   const [ weight, setWeight ] = useState<number>(0);
-  const [ imc, setImc ] = useState<number>(0);
+  const [ showYourLevel, setShowYourLevel ] = useState<Level | null>(null);
 
   console.log(typeof height)
   console.log(typeof weight)
@@ -25,7 +28,6 @@ export default function Home() {
   };
   
   // Funcionalidade input Weight
-
   const handleChangeWeight = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.maxLength = 6;
 
@@ -39,7 +41,7 @@ export default function Home() {
       formattedValue = value.replace(/(\d{3})(\d{2})/, '$1.$2'); // Formato para 5 dígitos
     } else if (digitCount === 4) {
       formattedValue = (value.replace(/(\d{2})(\d{2})/, '$1.$2')); // Formato para 4 dígitos
-    }
+    };
     
     const numericValue = Number(formattedValue);
 
@@ -50,8 +52,7 @@ export default function Home() {
   const handleClickCalculate = () => {
     if (height && weight) {
       calculateImc
-      
-      console.log(imc)
+
 
     } else {
       alert('Todos os campos devem ser preenchidos!');
@@ -98,8 +99,18 @@ export default function Home() {
         </div>
 
         {/* Rightside */}
-        <div className="flex-1">
-          cards
+        <div className="flex-1 grid grid-cols-2 gap-5">
+          {
+            levels.map((level, index) => (
+              <div key={index} className='flex flex-col justify-center items-center rounded-xl text-white' style={{ backgroundColor: level.color }}>
+                <div className="flex justify-center items-center w-[4rem] h-[4rem] bg-black/10 rounded-full">
+                  <img src={level.icon === 'up' ? upImage.src : downImage.src} alt="" width='30' />
+                </div>
+                <h3 className="font-bold py-1">{level.title}</h3>
+                <small className="text-xs">IMC está entre <strong>{level.imc[0]} e {level.imc[1]}</strong></small>
+              </div>
+            ))
+          }
         </div>
       </main>
     </div>  
