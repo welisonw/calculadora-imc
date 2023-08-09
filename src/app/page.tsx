@@ -65,7 +65,7 @@ export default function Home() {
 
   return (
     <div className="max-w-4xl mx-auto px-5">
-      <header className="my-10">
+      <header className="my-10 animate-animaLeft">
         <div>
           <img src={powered.src} alt="Logo" width={150} />
         </div>
@@ -73,7 +73,7 @@ export default function Home() {
 
       <main className="flex gap-20 m-auto">
         {/* Leftside */}
-        <section className="flex-1">
+        <section className="flex-1 animate-animaLeft">
           <h1 className="text-3xl font-bold text-gray-700 mb-3">Calcule o seu IMC</h1>
           <p className="text-gray-500 mb-3">IMC é a sigla para Índice de Massa Corpórea, parâmetro adotado pela Organização Mundial de Saúde (OMS) para calcular o peso ideal de cada pessoa.</p>
           <Input
@@ -82,7 +82,6 @@ export default function Home() {
             onChange={handleChangeHeight}
             placeholder="Digite a sua altura em metros (Ex.: 1.75)"
             className="w-full mt-7 border-b-2 py-2 px-1"
-
           />
           <Input
             type="text"
@@ -105,7 +104,7 @@ export default function Home() {
           {/* Card inicial */}
           {
             !showYourLevel &&
-            <div className="flex-1 grid grid-cols-2 gap-5">
+            <div className="flex-1 grid grid-cols-2 gap-5 animate-animaRight">
               {
                 levels.map((level, index) => (
                   <div
@@ -131,7 +130,7 @@ export default function Home() {
           {/* Card quando calculado o IMC do usuário */}
           {
             showYourLevel &&  
-            <div className="flex-1 flex">
+            <div className="flex-1 flex animate-animaRight">
               <div
                 className="absolute ml-[-2rem] mt-[10rem] flex justify-center items-center w-[4rem] h-[4rem] bg-blue-500 rounded-full cursor-pointer duration-200 hover:opacity-90 hover:scale-105"
                 onClick={handleArrowReset}
