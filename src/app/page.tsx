@@ -119,8 +119,8 @@ export default function Home() {
                         width='30'
                       />
                     </div>
-                    <h2 className="font-bold py-2 text-lg">{level.title}</h2>
-                    <small className="text-center sm:text-xs md:text-[.8rem]">IMC entre <strong>{level.imc[0]} e {level.imc[1]}</strong></small>
+                    <h2 className="font-bold py-2 text-center md:text-lg px-2">{level.title}</h2>
+                    <small className="text-center sm:text-xs md:text-[.8rem]">{level.imc[1] < 40 ? <>IMC entre <strong>{level.imc[0]} e {level.imc[1]}</strong></> : <>IMC maior que <strong>{level.imc[0]}</strong></>}</small>
                   </div>
                 ))
               }
@@ -150,8 +150,9 @@ export default function Home() {
                   />
                 </div>
                 <h1 className="font-bold text-3xl my-3">{showYourLevel.title}</h1>
-                <p className="text-sm mb-4">IMC entre <strong>{showYourLevel.imc[0]} e {showYourLevel.imc[1]}</strong></p>
-                <p>Seu IMC é de <strong>{showYourLevel.yourImc} kg/m²</strong></p>
+                <p className="text-sm mb-4">{showYourLevel.imc[1] < 40 ? <>IMC entre <strong>{showYourLevel.imc[0]} e {showYourLevel.imc[1]}</strong></> : <>IMC maior que <strong>{showYourLevel.imc[0]}</strong></>}</p>
+                <p className="mb-6">Seu IMC é de <strong>{showYourLevel.yourImc} kg/m²</strong></p>
+                <p className="text-center px-7">{showYourLevel.description}</p>
               </div>
             </div>
           }

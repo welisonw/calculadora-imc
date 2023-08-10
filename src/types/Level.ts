@@ -4,5 +4,6 @@ export type Level = {
   color: string,
   icon: 'down' | 'up';
   imc: number[],
+  description: string,
   yourImc?: number;
 };
