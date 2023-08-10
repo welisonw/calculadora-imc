@@ -1,4 +1,4 @@
-# <img src="./public/favicon.ico" alt="favicon" width=25 height=25 /> Calculadora de IMC
+# <img src="./public/favicon.ico" alt="favicon" width=30 height=30 /> Calculadora de IMC
 
 Este é um projeto de uma Calculadora de IMC desenvolvida em React e TypeScript no curso de React do B7Web. Com ela é possível calcular o Índice de Massa Corporal (IMC) de uma pessoa com feedback de sua classificação dentro da tabela IMC.
 
