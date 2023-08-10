@@ -15,17 +15,28 @@ const config: Config = {
       },
       keyframes: {
         animaRight: {
-          'from': {transform: 'translateX(30px)', opacity: '0'},
+          'from': {transform: 'translateX(40px)', opacity: '0'},
           'to': {transform: 'translateX(0px)', opacity: '1'},
         },
         animaLeft: {
-          'from': {transform: 'translateX(-30px)', opacity: '0'},
+          'from': {transform: 'translateX(-40px)', opacity: '0'},
           'to': {transform: 'translateX(0px)', opacity: '1'},
         },
+        animaTop: {
+          'from': {transform: 'translateY(-40px)', opacity: '0'},
+          'to': {transform: 'translateY(0px)', opacity: '1'},
+        },
+        animaDown: {
+          'from': {transform: 'translateY(40px)', opacity: '0'},
+          'to': {transform: 'translateY(0px)', opacity: '1'},
+        },
+    
       },
       animation: {
         animaRight: 'animaRight .5s forwards',
         animaLeft: 'animaLeft .5s forwards',
+        animaTop: 'animaTop .5s forwards',
+        animaDown: 'animaDown .5s forwards',
       },
     },
   },
