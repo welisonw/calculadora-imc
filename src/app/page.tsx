@@ -102,7 +102,7 @@ export default function Home() {
         </section>
 
         {/* Rightside */}
-        <section className="flex-1 flex">
+        <section className="flex-1 flex mb-10">
           {/* Card inicial */}
           {
             !showYourLevel &&
