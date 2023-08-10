@@ -64,16 +64,16 @@ export default function Home() {
 
 
   return (
-    <div className="max-w-4xl mx-auto px-5">
-      <header className="my-10 animate-animaLeft">
+    <div className="max-w-4xl mx-auto px-10">
+      <header className="my-10 animate-animaTop sm:animate-animaLeft">
         <div>
           <img src={powered.src} alt="Logo" width={150} />
         </div>
       </header>
 
-      <main className="flex gap-20 m-auto">
+      <main className="flex flex-col sm:flex-row gap-14 m-auto">
         {/* Leftside */}
-        <section className="flex-1 animate-animaLeft">
+        <section className="flex-1 animate-animaTop sm:animate-animaLeft">
           <h1 className="text-3xl font-bold text-gray-700 mb-3">Calcule o seu IMC</h1>
           <p className="text-gray-500 mb-3">IMC é a sigla para Índice de Massa Corpórea, parâmetro adotado pela Organização Mundial de Saúde (OMS) para calcular o peso ideal de cada pessoa.</p>
           <Input
@@ -92,7 +92,7 @@ export default function Home() {
             // mask={weight.length > 3 ? "999.99" : "99.99"}
           />
           <button
-            className="block w-full bg-blue-500 p-2 mt-3 rounded-md font-bold text-white duration-200 hover:opacity-80"
+            className="block w-full bg-blue-500 p-2 mt-3 rounded-sm font-bold text-white duration-200 hover:opacity-80"
             onClick={handleClickCalculate}
           >
             Calcular
@@ -104,12 +104,12 @@ export default function Home() {
           {/* Card inicial */}
           {
             !showYourLevel &&
-            <div className="flex-1 grid grid-cols-2 gap-5 animate-animaRight">
+            <div className="flex-1 grid grid-cols-2 gap-5 animate-animaDown sm:animate-animaRight">
               {
                 levels.map((level, index) => (
                   <div
                     key={index}
-                    className='flex flex-col justify-center items-center rounded-xl text-white'
+                    className='flex flex-col justify-center items-center rounded-xl text-white py-5'
                     style={{ backgroundColor: level.color }}
                   >
                     <div className="flex justify-center items-center w-[4rem] h-[4rem] bg-black/10 rounded-full">
@@ -120,7 +120,7 @@ export default function Home() {
                       />
                     </div>
                     <h2 className="font-bold py-2 text-lg">{level.title}</h2>
-                    <small className="text-sm">IMC entre <strong>{level.imc[0]} e {level.imc[1]}</strong></small>
+                    <small className="text-center sm:text-xs md:text-[.8rem]">IMC entre <strong>{level.imc[0]} e {level.imc[1]}</strong></small>
                   </div>
                 ))
               }
@@ -130,9 +130,9 @@ export default function Home() {
           {/* Card quando calculado o IMC do usuário */}
           {
             showYourLevel &&  
-            <div className="flex-1 flex animate-animaRight">
+            <div className="flex-1 flex animate-animaDown sm:animate-animaRight">
               <div
-                className="absolute ml-[-2rem] mt-[10rem] flex justify-center items-center w-[4rem] h-[4rem] bg-blue-500 rounded-full cursor-pointer duration-200 hover:opacity-90 hover:scale-105"
+                className="absolute ml-[2rem] mt-[-2rem] rotate-90 sm:ml-[-2rem] sm:mt-[10rem] sm:rotate-0 flex justify-center items-center w-[4rem] h-[4rem] bg-blue-500 rounded-full cursor-pointer duration-200 hover:opacity-90 hover:scale-105"
                 onClick={handleArrowReset}
               >
                 <img
@@ -141,7 +141,7 @@ export default function Home() {
                 width='25'
                 />
               </div>
-              <div className="flex flex-col justify-center items-center rounded-xl text-white w-full" style={{ backgroundColor: showYourLevel.color }}>
+              <div className="flex flex-col justify-center items-center rounded-xl text-white w-full py-5" style={{ backgroundColor: showYourLevel.color }}>
                 <div className="flex justify-center items-center w-[4rem] h-[4rem] bg-black/10 rounded-full">
                   <img
                     src={showYourLevel.icon === 'up' ? upImage.src : downImage.src}
