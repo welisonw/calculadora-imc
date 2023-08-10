@@ -1,22 +1,24 @@
 
-import { ChangeEvent } from "react";
+import { ChangeEvent, KeyboardEvent } from "react";
 
 type Props = {
   type: string,
+  placeholder?: string,
   value: number | string,
   onChange: (e: ChangeEvent<HTMLInputElement>) => void,
-  placeholder?: string,
+  onKeyUp: (e: KeyboardEvent<HTMLInputElement>) => void,
   className?: string,
 }
 
-export const Input = ({ type, value, onChange, placeholder, className } : Props) => {
+export const Input = ({ type, placeholder, value, onChange, onKeyUp, className } : Props) => {
   return (
     <>
       <input
         type={type}
+        placeholder={placeholder}
         value={value}
         onChange={onChange}
-        placeholder={placeholder}
+        onKeyUp={onKeyUp}
         className={className}
       />
     </>

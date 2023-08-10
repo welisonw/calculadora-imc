@@ -1,7 +1,7 @@
 'use client';
 
 import { Input } from "@/components/Input/Input";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import powered from '../assets/powered.png';
 import { levels, calculateImc } from "@/helpers/calculateImc";
 import upImage from '../assets/up.png';
@@ -78,16 +78,18 @@ export default function Home() {
           <p className="text-gray-500 mb-3">IMC é a sigla para Índice de Massa Corpórea, parâmetro adotado pela Organização Mundial de Saúde (OMS) para calcular o peso ideal de cada pessoa.</p>
           <Input
             type="text"
+            placeholder="Digite a sua altura em metros (Ex.: 1.75)"
             value={height ? height : ''} 
             onChange={handleChangeHeight}
-            placeholder="Digite a sua altura em metros (Ex.: 1.75)"
+            onKeyUp={(e) => (e.key === 'Enter') && handleClickCalculate()}
             className="w-full mt-7 border-b-2 py-2 px-1"
           />
           <Input
             type="text"
+            placeholder="Digite o seu peso em kg (Ex.: 68.3)"
             value={weight ? weight : ''} 
             onChange={handleChangeWeight}
-            placeholder="Digite o seu peso em kg (Ex.: 68.3)"
+            onKeyUp={(e) => (e.key === 'Enter') && handleClickCalculate()}
             className="w-full my-6 border-b-2 py-2 px-1"
             // mask={weight.length > 3 ? "999.99" : "99.99"}
           />
