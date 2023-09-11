@@ -8,6 +8,8 @@ import upImage from '../assets/up.png';
 import downImage from '../assets/down.png';
 import { Level } from "@/types/Level";
 import leftArrow from '../assets/leftarrow.png';
+import Image from "next/image";
+
 
 
 export default function Home() {
@@ -67,7 +69,12 @@ export default function Home() {
     <div className="max-w-4xl mx-auto px-10">
       <header className="my-10 animate-animaTop sm:animate-animaLeft">
         <div>
-          <img src={powered.src} alt="Logo" width={150} />
+          <Image 
+            src={powered.src}
+            alt="Logo"
+            width={150}
+            height={150}
+          />
         </div>
       </header>
 
@@ -115,11 +122,13 @@ export default function Home() {
                     style={{ backgroundColor: level.color }}
                   >
                     <div className="flex justify-center items-center w-[4rem] h-[4rem] bg-black/10 rounded-full">
-                      <img
+                      <Image
                         src={level.icon === 'up' ? upImage.src : downImage.src}
                         alt="hand"
                         width='30'
+                        height={30}
                       />
+                      
                     </div>
                     <h2 className="font-bold py-2 text-center md:text-lg px-2">{level.title}</h2>
                     <small className="text-center sm:text-xs md:text-[.8rem]">{level.imc[1] < 40 ? <>IMC entre <strong>{level.imc[0]} e {level.imc[1]}</strong></> : <>IMC maior que <strong>{level.imc[0]}</strong></>}</small>
@@ -137,18 +146,20 @@ export default function Home() {
                 className="absolute ml-[2rem] mt-[-2rem] rotate-90 sm:ml-[-2rem] sm:mt-[10rem] sm:rotate-0 flex justify-center items-center w-[4rem] h-[4rem] bg-blue-500 rounded-full cursor-pointer duration-200 hover:opacity-90 hover:scale-105"
                 onClick={handleArrowReset}
               >
-                <img
-                src={leftArrow.src}
-                alt="left arrow"
-                width='25'
+                <Image
+                  src={leftArrow.src}
+                  alt="left arrow"
+                  width='25'
+                  height={25}
                 />
               </div>
               <div className="flex flex-col justify-center items-center rounded-xl text-white w-full py-5" style={{ backgroundColor: showYourLevel.color }}>
                 <div className="flex justify-center items-center w-[4rem] h-[4rem] bg-black/10 rounded-full">
-                  <img
+                  <Image
                     src={showYourLevel.icon === 'up' ? upImage.src : downImage.src}
                     alt=""
                     width='30'
+                    height={30}
                   />
                 </div>
                 <h1 className="font-bold text-3xl my-3">{showYourLevel.title}</h1>
